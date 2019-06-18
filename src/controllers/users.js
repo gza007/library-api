@@ -7,8 +7,8 @@ exports.create = (req, res) => {
     email: req.body.email,
     password: req.body.password,
   });
-  user.save((error, data) => {
-    res.status(201);
-    res.json(data);
+
+  user.save().then((data) => {
+    res.status(201).json(user.sanitise(data));
   });
 };
